@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Atlas de ideas para crear objetos custom en un servidor de Minecraft Java 1.21.x."
+    />
+    <title>El Gran Arsenal — Ideas para Minecraft 1.21.x</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="noise" aria-hidden="true"></div>
+    <header class="topbar">
+      <a class="brand" href="#inicio" aria-label="Volver al inicio">
+        <span class="brand-cube" aria-hidden="true"></span>
+        <span>EL GRAN ARSENAL</span>
+      </a>
+      <nav aria-label="Navegación principal">
+        <a href="#catalogo">Catálogo</a>
+        <a href="#colecciones">Colecciones</a>
+        <a href="#plan">Plan de creación</a>
+      </nav>
+      <button class="saved-button" id="savedButton" type="button">
+        <span>✦</span> Guardados <strong id="savedCount">0</strong>
+      </button>
+    </header>
+
+    <main>
+      <section class="hero" id="inicio">
+        <div class="hero-copy">
+          <p class="eyebrow"><span></span> BIBLIOTECA DE DISEÑO · JAVA 1.21.x</p>
+          <h1>Objetos que cuentan<br />historias <em>al usarlos.</em></h1>
+          <p class="hero-intro">
+            Un catálogo grande y directo para construir el próximo sistema de
+            objetos de tu servidor: armas, herramientas, reliquias, comidas,
+            armaduras y criaturas convertidas en progresión.
+          </p>
+          <div class="hero-actions">
+            <a class="primary-button" href="#catalogo">Explorar las ideas <span>↓</span></a>
+            <button class="ghost-button" id="randomButton" type="button">↻ Sorpréndeme</button>
+          </div>
+        </div>
+        <aside class="hero-card" aria-label="Idea destacada">
+          <div class="hero-card-top">
+            <span>HALLAZGO DESTACADO</span>
+            <span class="live-dot">ACTIVO</span>
+          </div>
+          <div class="artifact-visual">
+            <div class="echo-ring ring-one"></div>
+            <div class="echo-ring ring-two"></div>
+            <div class="pixel-sword" aria-hidden="true">⚔</div>
+          </div>
+          <div>
+            <span class="micro-label">ARMA · DEEP DARK</span>
+            <h2>Hoja del Eco</h2>
+            <p>Acumula silencio al caminar agachado. El siguiente golpe libera una onda sónica corta.</p>
+          </div>
+          <div class="hero-card-meta">
+            <span>PLUGIN</span><span>MEDIA</span><span>ENDGAME</span>
+          </div>
+        </aside>
+      </section>
+
+      <section class="stats-strip" aria-label="Resumen del catálogo">
+        <div><strong id="ideaTotal">96</strong><span>ideas concretas</span></div>
+        <div><strong>10</strong><span>familias de objetos</span></div>
+        <div><strong>4</strong><span>métodos técnicos</span></div>
+        <div><strong>5</strong><span>fases de desarrollo</span></div>
+      </section>
+
+      <section class="catalog-section" id="catalogo">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow"><span></span> CATÁLOGO COMPLETO</p>
+            <h2>Encuentra la próxima creación</h2>
+          </div>
+          <p>
+            Filtra por lo que tu amigo puede construir ahora. Cada ficha explica
+            la fantasía, el efecto y la forma técnica más sencilla.
+          </p>
+        </div>
+
+        <div class="catalog-shell">
+          <aside class="filters" aria-label="Filtros del catálogo">
+            <div class="filter-heading">
+              <span>FILTROS</span>
+              <button id="clearFilters" type="button">Limpiar</button>
+            </div>
+            <label class="search-box">
+              <span aria-hidden="true">⌕</span>
+              <input id="searchInput" type="search" placeholder="Buscar objeto o efecto…" />
+            </label>
+
+            <fieldset>
+              <legend>CATEGORÍA</legend>
+              <div id="categoryFilters" class="check-list"></div>
+            </fieldset>
+            <fieldset>
+              <legend>ETAPA DEL SERVIDOR</legend>
+              <div id="stageFilters" class="check-list"></div>
+            </fieldset>
+            <fieldset>
+              <legend>IMPLEMENTACIÓN</legend>
+              <div id="methodFilters" class="check-list"></div>
+            </fieldset>
+            <fieldset>
+              <legend>DIFICULTAD</legend>
+              <div id="difficultyFilters" class="difficulty-row"></div>
+            </fieldset>
+          </aside>
+
+          <div class="results">
+            <div class="results-bar">
+              <p><strong id="resultCount">96</strong> creaciones encontradas</p>
+              <label>
+                Ordenar:
+                <select id="sortSelect">
+                  <option value="recommended">Recomendadas</option>
+                  <option value="name">Nombre A–Z</option>
+                  <option value="difficulty">Más simples primero</option>
+                  <option value="stage">Progresión</option>
+                </select>
+              </label>
+            </div>
+            <div class="active-filters" id="activeFilters" aria-live="polite"></div>
+            <div class="card-grid" id="cardGrid"></div>
+            <div class="empty-state" id="emptyState" hidden>
+              <span>◇</span>
+              <h3>No encontramos esa reliquia</h3>
+              <p>Prueba con menos filtros o busca una palabra más general.</p>
+              <button type="button" id="emptyClear">Restablecer filtros</button>
+            </div>
+            <button class="load-more" id="loadMore" type="button">Mostrar más ideas</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="collections-section" id="colecciones">
+        <div class="section-heading light">
+          <div>
+            <p class="eyebrow"><span></span> SISTEMAS QUE CONECTAN OBJETOS</p>
+            <h2>Colecciones listas para una temporada</h2>
+          </div>
+          <p>No son objetos sueltos: son pequeños ciclos de juego con principio, objetivo y recompensa.</p>
+        </div>
+        <div class="collection-grid">
+          <article class="collection-card deep">
+            <span class="collection-number">01</span>
+            <div class="collection-icon">◉</div>
+            <p>DEEP DARK</p>
+            <h3>El Juramento del Silencio</h3>
+            <span>8 objetos · sigilo · Warden · ecos</span>
+            <p>Recolecta fragmentos sin activar sensores para forjar equipo que premia caminar en silencio.</p>
+          </article>
+          <article class="collection-card ember">
+            <span class="collection-number">02</span>
+            <div class="collection-icon">◆</div>
+            <p>NETHER</p>
+            <h3>La Forja Carmesí</h3>
+            <span>7 objetos · calor · riesgo/recompensa</span>
+            <p>El equipo se calienta al luchar y convierte ese calor en daño, velocidad o protección.</p>
+          </article>
+          <article class="collection-card sky">
+            <span class="collection-number">03</span>
+            <div class="collection-icon">✦</div>
+            <p>END & CIELO</p>
+            <h3>Cartógrafos del Vacío</h3>
+            <span>6 objetos · movilidad · exploración</span>
+            <p>Instrumentos y reliquias para encontrar islas, regresar a salvo y dominar el espacio vertical.</p>
+          </article>
+          <article class="collection-card harvest">
+            <span class="collection-number">04</span>
+            <div class="collection-icon">♨</div>
+            <p>COCINA</p>
+            <h3>El Banquete del Viajero</h3>
+            <span>10 comidas · recetas · grupos</span>
+            <p>Ingredientes de cada dimensión crean platos con ventajas situacionales, no pociones mejores.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="roadmap-section" id="plan">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow"><span></span> ORDEN DE IMPLEMENTACIÓN</p>
+            <h2>Un plan grande, construido en pasos pequeños</h2>
+          </div>
+          <p>Empieza con objetos legibles y mide su uso antes de diseñar jefes, menús o economías completas.</p>
+        </div>
+        <div class="roadmap">
+          <article>
+            <span>FASE 01</span><strong>Fundación</strong>
+            <p>10 objetos, recetas claras, lore, CustomModelData y comandos de prueba.</p>
+            <small>Meta: confirmar que el estilo y las estadísticas se entienden.</small>
+          </article>
+          <article>
+            <span>FASE 02</span><strong>Progresión</strong>
+            <p>Sets de herramientas, drops por criatura, rarezas y costos de reparación.</p>
+            <small>Meta: que cada objeto tenga una fuente y una razón para existir.</small>
+          </article>
+          <article>
+            <span>FASE 03</span><strong>Mundo vivo</strong>
+            <p>Contratos, minibosses, Warden, estructuras y primeras colecciones.</p>
+            <small>Meta: obtener objetos jugando, no solo desde una tienda.</small>
+          </article>
+          <article>
+            <span>FASE 04</span><strong>Temporadas</strong>
+            <p>Rotaciones de recetas, platos, variantes cosméticas y desafíos cooperativos.</p>
+            <small>Meta: contenido nuevo reutilizando sistemas ya estables.</small>
+          </article>
+          <article>
+            <span>FASE 05</span><strong>Endgame</strong>
+            <p>Reliquias, mejoras laterales, jefes mecánicos y colecciones prestigiosas.</p>
+            <small>Meta: variedad; nunca daño infinito ni reemplazo total de vanilla.</small>
+          </article>
+        </div>
+        <div class="rules-grid">
+          <article><span>01</span><h3>Una fantasía</h3><p>Cada objeto hace una cosa memorable. Si necesita un párrafo de reglas, hay que simplificarlo.</p></article>
+          <article><span>02</span><h3>Un límite visible</h3><p>Cooldown, cargas, bioma o condición. El jugador debe entender cuándo funciona.</p></article>
+          <article><span>03</span><h3>Una fuente temática</h3><p>El Warden da ecos; el Blaze da calor. El método de obtención cuenta parte de la historia.</p></article>
+          <article><span>04</span><h3>Una alternativa</h3><p>Custom no significa superior. Crea opciones laterales para que vanilla siga siendo útil.</p></article>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div>
+        <span class="brand-cube" aria-hidden="true"></span>
+        <strong>EL GRAN ARSENAL</strong>
+      </div>
+      <p>Documento creativo para un servidor de Minecraft Java 1.21.x · No afiliado con Mojang.</p>
+      <button id="exportButton" type="button">Exportar guardados ↓</button>
+    </footer>
+
+    <dialog id="ideaModal">
+      <button class="modal-close" id="modalClose" aria-label="Cerrar">×</button>
+      <div id="modalContent"></div>
+    </dialog>
+
+    <script src="app.js"></script>
+  </body>
+</html>
